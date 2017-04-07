@@ -97,12 +97,14 @@
             <table class="table">
               <thead>
                 <tr>
+                  <th><abbr title="Product">Image</abbr></th>
                   <th><abbr title="Product">Product</abbr></th>
                   <th><abbr title="Subtotal">Subtotal</abbr></th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="item in itemList">
+                  <td> <img v-bind:src="item.image" style="width:200px;" alt=""> </td>
                   <td> {{ item.name }} </td>
                   <td> ${{ item.price }} </td>
                 </tr>
@@ -111,11 +113,16 @@
             </table>
             <div class="columns is-mobile">
               <div class="column is-5 is-offset-7">
-                <p class="title">Subtotals : $ </p>
-                <a id="checkout" class="button is-medium">Proses untuk checkout</a> <a class="button is-medium cont">Lanjut Berbelanja</a>
+                <p class="title">Subtotals : $ {{ subtotal}} </p>
+                <a id="checkout" @click="checkout()" class="button is-medium">Proses untuk checkout</a> <a class="button is-medium cont">Lanjut Berbelanja</a>
               </div>
             </div>
-          </div>
+            <div v-if="statusTransaksi == 'sukses'" class="notification is-success">
+              <button class="delete"></button>
+                Success
+            </div>
+        </div>
+
     </section>
 
     <section class="section">
@@ -148,7 +155,8 @@
               <p class="title">{{ product.name }}</p>
               <p class="subtitle">${{ product.price }}</p>
               </a>
-              <a class="button is-info" @click="addCart(product)">Add to cart</a>
+              <a v-if="statusLogin" class="button is-info" @click="addCart(product)">Add to cart</a>
+              <a v-else class="button is-info" onclick="fbLogin()">Add to cart</a>
               <a class="button is-primary">View</a>
             </div>
         </div>

@@ -10,7 +10,7 @@
 
 window.fbAsyncInit = function() {
   FB.init({
-    appId      : '1875080789436793',
+    appId      : '1671060306528826',
     cookie     : true,
     xfbml      : true,
     version    : 'v2.8'
@@ -56,6 +56,7 @@ function statusChangeCallback(response) {
     // Logged into your app and Facebook.
     testAPI();
   } else {
+    console.log(app.statusLogin);
     console.log('please login');
     // fbLogin();
     // The person is not logged into your app or we are unable to tell.
@@ -66,11 +67,14 @@ function statusChangeCallback(response) {
 
 function testAPI() {
   console.log('Welcome!  Fetching your information.... ');
-  FB.api('/me', function(response) {
+  FB.api('/me',{fields: 'name, email, link, picture.type(large) ,gender'}, function(response) {
+    console.log(response);
+    app.datauser = response
     console.log('Successful login for: ' + response.name);
     axios.post('http://localhost:3000/customers',response)
          .then(function(res) {
            localStorage.setItem("token", res.data);
+
           //  console.log(res.data);
          })
          .catch(function(err) {
@@ -83,27 +87,55 @@ function testAPI() {
 
 
 function clearLocalStorage() {
-  FB.logout(function(response) {
-   // Person is now logged out
-   console.log(response);
-   localStorage.removeItem('token');
-   window.location.reload();
-  });
+
+  FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+      // the user is logged in and has authenticated your
+      // app, and response.authResponse supplies
+      // the user's ID, a valid access token, a signed
+      // request, and the time the access token
+      // and signed request each expire
+      var uid = response.authResponse.userID;
+      var accessToken = response.authResponse.accessToken;
+
+      FB.api('/'+uid+'/permissions', 'delete', function(response){
+        localStorage.removeItem('token');
+        window.location.reload();
+      });
+
+    } else if (response.status === 'not_authorized') {
+      // the user is logged in to Facebook,
+      // but has not authenticated your app
+    } else {
+      // the user isn't logged in to Facebook.
+    }
+   });
+  // FB.logout(function(response) {
+  //  // Person is now logged out
+  //  FB.Auth.setAuthResponse(null, 'unknown');
+  //  console.log(response);
+  //  localStorage.removeItem('token');
+  //  window.location.reload();
+  // });
 }
 
 var app = new Vue({
   el: '#app',
   data: {
-    statusLogin: '',
+    datauser: null,
+    statusLogin: false,
     showCart: false,
     products: [],
     itemList: [],
-    counter: 0
+    counter: 0,
+    subtotal:0,
+    statusTransaksi: ''
   },
   methods: {
     addCart: function(barang) {
       this.itemList.push(barang);
       this.counter += 1;
+      this.subtotal +=  +(barang.price);
     },
     toggleCart: function() {
       this.showCart = !this.showCart
@@ -127,12 +159,31 @@ var app = new Vue({
       }
 
       // console.log(status);
+    },
+    checkout: function(){
+      let newList = this.itemList.map(function(item) {
+        return item._id
+      })
+      let checkoutData = {
+        listItem: newList,
+        subtotal: this.subtotal,
+        iduser: this.datauser.id
+      }
+      axios.post('http://localhost:3000/transactions',checkoutData)
+           .then(function(res) {
+             app.statusTransaksi = res.data
+
+           })
+           .catch(function(err) {
+             app.statusTransaksi = err.message
+           })
+
     }
   },
   mounted: function(){
     // console.log(this.status);
-    this.getToken();
     this.getData();
+    this.getToken();
   }
 
 })

@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const cartSchema = new Schema({
   memberid: {type: String, ref:'Customer'},
   products: [{type: Schema.Types.ObjectId, ref:'Product'}],
-  in_date: Date
+  in_date: Date,
+  subtotal: Number
 });
 
 
