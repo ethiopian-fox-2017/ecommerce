@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Anthony Co.</title>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="assets/stylesheet/custom.css">
+    <link rel="stylesheet" href="assets/stylesheet/bulma.css">
+    <link rel="stylesheet" href="assets/stylesheet/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/stylesheet/owl.theme.default.css">
+    <!-- <script src="assets/js/owl.carousel.min.js"></script> -->
+    <script>
+
+    </script>
+  </head>
+
+  <body>
+
+    <div id="app">
+    <header>
+      <!-- menu atas -->
+      <nav class="nav">
+        <div class="container">
+          <div class="nav-left">
+          </div>
+          <div class="nav-center">
+            <a href="index.html" class="nav-item">
+              <b>Anthony Co.</b>
+            </a>
+          </div>
+
+          <div class="nav-right nav-menu">
+            <a id="cart" v-if="statusLogin == true" class="nav-item" onclick="clearLocalStorage()"><b>Logout</b></a>
+            <a id="cart" v-if="statusLogin == false" class="nav-item" onclick="fbLogin()"><b>Login</b></a>
+            <a id="cart" class="nav-item" @click="toggleCart"><b>Cart ({{ counter }})</b></a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- menu bawah -->
+      <div class="container">
+        <nav class="level">
+            <div class="nav-left">
+              <a href="products.html" class="nav-item is-tab is-active">Terbaru</a>
+              <a id="brands" class="nav-item is-tab ">Brands</a>
+              <a id="atasan" class="nav-item is-tab ">Atasan</a>
+              <a id="bawahan" class="nav-item is-tab">Bawahan</a>
+              <a id="sepatu" class="nav-item is-tab ">sepatu</a>
+            </div>
+            <div class="level-right">
+              <div class="level-item">
+                <div class="field has-addons">
+                  <p class="control">
+                    <input class="input" type="text" placeholder="Search">
+                  </p>
+                  <p class="control">
+                    <a class="button">
+                      Search
+                    </a>
+                  </p>
+                </div>
+              </div>
+
+          </div>
+        </nav>
+      </div>
+
+    </header>
+
+    <!-- details product -->
+
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Details Product</p>
+          <button class="delete"></button>
+        </header>
+        <section class="modal-card-body">
+          <!-- Content ... -->
+          <img src="https://s-media-cache-ak0.pinimg.com/564x/45/43/07/454307b3b4e50351aaa6dc469c1f42ac.jpg" alt="">
+          <p class="title">Product Name</p>
+          <p class="subtitle">Lorem ipsum dolor sit amet</p>
+          <p class="subtitle">Rp. 1.000.000</p>
+          <a class="button is-info">Add to cart</a>
+        </section>
+      </div>
+    </div>
+
+
+    <!-- cart -->
+    <section v-if="showCart" id="display-cart">
+        <div class="container cart">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th><abbr title="Product">Image</abbr></th>
+                  <th><abbr title="Product">Product</abbr></th>
+                  <th><abbr title="Subtotal">Subtotal</abbr></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in itemList">
+                  <td> <img v-bind:src="item.image" style="width:200px;" alt=""> </td>
+                  <td> {{ item.name }} </td>
+                  <td> ${{ item.price }} </td>
+                </tr>
+
+              </tbody>
+            </table>
+            <div class="columns is-mobile">
+              <div class="column is-5 is-offset-7">
+                <p class="title">Subtotals : $ {{ subtotal}} </p>
+                <a id="checkout" @click="checkout()" class="button is-medium">Proses untuk checkout</a> <a class="button is-medium cont">Lanjut Berbelanja</a>
+              </div>
+            </div>
+            <div v-if="statusTransaksi == 'sukses'" class="notification is-success">
+              <button class="delete"></button>
+                Success
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="heading">
+          <div class="img-heading">
+            <img src="https://pabblogger.files.wordpress.com/2010/03/001.jpg" alt="">
+
+          </div>
+
+        </div>
+
+
+      </div>
+    </section>
+
+
+    <!-- tab produk unggulan -->
+    <section class="section">
+      <div class="container">
+        <div class="tabs">
+          <ul>
+            <li class="is-active"><a>Produk Unggulan</a></li>
+          </ul>
+        </div>
+        <div class="columns is-multiline is-mobile">
+            <div v-for="product in products" class="column is-one-quarter">
+              <a class="products" href="">
+              <img v-bind:src="product.image" alt="">
+              <p class="title">{{ product.name }}</p>
+              <p class="subtitle">${{ product.price }}</p>
+              </a>
+              <a v-if="statusLogin" class="button is-info" @click="addCart(product)">Add to cart</a>
+              <a v-else class="button is-info" onclick="fbLogin()">Add to cart</a>
+              <a class="button is-primary">View</a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            <strong>Bulma</strong> by <a href="http://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC ANS 4.0</a>.
+          </p>
+          <p>
+            <a class="icon" href="https://github.com/jgthms/bulma">
+              <i class="fa fa-github"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="assets/js/custom.js"></script>
+  </body>
+</html>

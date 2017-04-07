@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="assets/stylesheet/custom.css">
+    <link rel="stylesheet" href="assets/stylesheet/bulma.css">
+    <link rel="stylesheet" href="assets/stylesheet/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/stylesheet/owl.theme.default.css">
+    <script type="text/javascript">
+    window.onload = function() {
+      var app = new Vue({
+        el: '#cont',
+        data: {
+          product: {
+            name: '',
+            description: '',
+            price:'',
+            stock:0,
+            image:''
+          },
+          products: []
+        },
+        methods: {
+          postData: function(){
+            axios.post('http://localhost:3000/products', this.product)
+            .then(function (response) {
+              window.location.reload()
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          },
+          getData: function(){
+            axios.get('http://localhost:3000/products')
+            .then(function (response) {
+              app.products = response.data
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
+          }
+        },
+        mounted: function() {
+          this.getData();
+
+        }
+
+      })
+    }
+
+
+    </script>
+  </head>
+  <body>
+    <div class="container" id="cont">
+      <p class="title">Add Product</p>
+      <div class="field is-horizontal">
+        <div class="field-body">
+          <div class="field">
+            <label class="label">nama produk</label>
+            <div class="control">
+              <input id="namaproduk" class="input" type="text" v-model="product.name" name="nama">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-body">
+          <div class="field">
+            <label class="label">deskripsi produk</label>
+            <div class="control">
+              <input id="deskripsiproduk" class="input" type="text" v-model="product.description" name="deskripsi">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-body">
+          <div class="field">
+            <label class="label">harga produk</label>
+            <div class="control">
+              <input id="hargaproduk" class="input" type="text" v-model="product.price" name="harga">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-body">
+          <div class="field">
+            <label class="label">gambar produk</label>
+            <div class="control">
+              <input id="gambarproduk" class="input" type="text" v-model="product.image" name="gambar">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field is-horizontal">
+        <div class="field-body">
+          <div class="field">
+            <label class="label">stock produk</label>
+            <div class="control">
+              <input id="stockproduk" class="input" type="text" v-model="product.stock" name="stock">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" id="submit" class="button is-warning" v-on:click="postData">Submit</button>
+      <hr>
+      <p class="title">List Product</p>
+
+      <div class="container cart">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Image Product</th>
+                <th><abbr title="Product">Product Name</abbr></th>
+                <th><abbr title="Description">Description</abbr></th>
+                <th><abbr title="Quantity">Quantity</abbr></th>
+                <th><abbr title="Price">Price</abbr></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="product in products">
+                <td><img v-bind:src="product.image" alt=""></td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.stock }}</td>
+                <td>${{ product.price }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+    </div>
+  </body>
+
+</html>
