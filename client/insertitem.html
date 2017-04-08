@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>insert data</title>
+    <meta charset="utf-8">
+    <title>buah tangan</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="input">
+      <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="Item_id">item ID</label>
+                <input class="form-control input-lg" v-model="item_id" id="Item_id" type="text">
+            </div>
+            <div class="form-group">
+                <label for="picture_url">Picture Url</label>
+                <input class="form-control input-lg" v-model="picture_url" id="picture_url" type="text">
+            </div>
+            <div class="form-group">
+                <label for="name">name</label>
+                <input class="form-control input-lg" v-model="name" onchange=""id="name" type="text">
+            </div>
+            <div class="form-group">
+                <label for="desc">description</label>
+                <input class="form-control input-lg" v-model="desc" id="desc" type="text">
+            </div>
+            <div class="form-group">
+                <label for="stock">Stock</label>
+                <input class="form-control input-lg" v-model="stock" id="stock" type="text">
+            </div>
+          <button type="button" class="btn btn-primary btn-lg" @click='senddata'>Large button</button>
+        </form>
+      </div>
+
+    </div>
+</body>
+
+<script src="./js/vueinput.js"></script>
+
+</html>

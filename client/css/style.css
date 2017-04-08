@@ -1,0 +1,96 @@
+#header {
+  background-color: red;
+}
+.headertext {
+  color: black;
+}
+.buttondesc{
+  font-family: 'Francois One', sans-serif;
+  font-style: bold;
+  font-size: 20px;
+  color: white;
+  margin: auto;
+}
+.headerborder{
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+}
+.container{
+  border-width: 1px;
+  border-color: grey;
+  padding: 0;
+  max-height: 480px;
+}
+.myjumbotron{
+  padding: 0px !important;
+  min-height: 480px;
+}
+.thiscarr{
+  width: 100%;
+  margin: 0px;
+  outline: 0px;
+  min-height: 480px;
+  max-height: 480px;
+}
+.removepadding{
+  padding: 0;
+}
+.productbaner{
+  background-color: red;
+  min-height: 40px;
+}
+#product{
+font-family: 'Francois One', sans-serif;
+font-style: bold;
+font-size: 40px;
+color: white;
+}
+.product-box{
+  border: solid;
+  border-width: 0.5px;
+  border-color: grey;
+  padding: 10px;
+  margin: 10px;
+  max-width: 300px;
+  min-height: 400px;
+  max-height: 500px;
+}
+.product-name{
+  margin: 5px;
+  font-family: 'Roboto', sans-serif;
+  color: #5b5f66;
+}
+.product-detail{
+  margin:5px;
+}
+.product-vendor{
+  margin: 5px;
+  font-family: 'Roboto', sans-serif;
+  color: #848991;
+}
+.product-image{
+  max-width: 250px;
+  max-height: 400px;
+}
+.harga{
+  position: absolute;
+  color: red;
+  right: 0px;
+}
+.footer-backgroud{
+  background-color: #edf0f4;
+  margin:px;
+}
+.footer{
+  min-width:300px;
+}
+.footer-tittle{
+  max-width:290px;
+  border-bottom: solid;
+}
+.footer-desc{
+  max-width:300px;
+  min-height:300px;
+  max-height: 500px;
+}
