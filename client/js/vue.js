@@ -1,10 +1,21 @@
 var app = new Vue({
     el: '#app',
-    data:{
-      items:[]
+    data: {
+        items: [],
+        carts: [],
+        item: {}
     },
-    mounted(){
-      this.loaddata() //method1 will execute at pageload
+    mounted() {
+        this.loaddata() //method1 will execute at pageload
+    },
+    computed: {
+        total: function() {
+            let total = 0
+            for (var i = 0; i < this.carts.length; i++) {
+                total += Number(this.carts[i].price)
+            }
+            return total
+        }
     },
     methods: {
         fblogin: function() {
@@ -20,15 +31,16 @@ var app = new Vue({
             FB.api('/me', {
                 fields: "name,email,gender"
             }, function(response) {
-                console.log(response);
+                //console.log(response);
                 axios.post('http://localhost:3000/api/login', {
-                        username:response.name,
+                        username: response.name,
                         facebookid: response.id,
-                        gender:response.gender,
-                        email:response.email
+                        gender: response.gender,
+                        email: response.email
                     })
-                    .then(function(response) {
-                        localStorage.setItem(response.data);
+                    .then(function(response) { //console.log(response);
+                        localStorage.setItem('token', response.data);
+                        //console.log(localStorage);
                     })
                     .catch(function(error) {
                         console.log(error);
@@ -42,24 +54,42 @@ var app = new Vue({
                 console.log(response);
             });
         },
-        loaddata:function(){
-          let thisapp=this;
-          let loaddata1= new Promise (function(res,rej){
-            axios.get('http://localhost:3000/api/item')
-            .then(function(data){
-              //console.log(data);
-              res(data);
+        loaddata: function() {
+            let thisapp = this;
+            let loaddata1 = new Promise(function(res, rej) {
+                axios.get('http://localhost:3000/api/item')
+                    .then(function(data) {
+                        res(data);
+                    })
+                    .catch(function(err) {
+                        rej(err)
+                    })
+            });
+            loaddata1.then(function(data) {
+                thisapp.items = data.data;
             })
-            .catch(function(err) {
-            rej(err)
-            })
-          });
-          loaddata1.then(function(data){
-            thisapp.items=data.data;
-          })
         },
-        cek:function(){
-          console.log(this.items);
+        cek: function() {
+            console.log(this.cart);
+        },
+        addtocart: function(item) {
+            this.carts.push(item)
+        },
+        checkout: function() {
+          let thisapp=this;
+            axios.post('http://localhost:3000/api/checkout', {
+                    data:thisapp.carts
+                },{
+                  headers:{
+                    token:localStorage.getItem('token')
+                  }
+                })
+                .then(function(response) {
+                    console.log(response);
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
         }
     }
 

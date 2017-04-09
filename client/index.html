@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue@2.2.6"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 </head>
@@ -91,31 +91,64 @@
                     <p id="product">Product</p>
                 </div>
             </div>
-            <div class="row product" v-for='item in items'>
+            <div class="row product">
 
+                <div class="col-cs-4 col-md-3 removepadding" v-for='item in items'>
+                    <div class="product-box" >
+                        <img class="product-image" v-bind:src=item.picture_url alt="">
+                        <div class="product-desc">
+                            <h2 class="product-name">{{item.name}}</h2>
+                            <h4 class="product-vendor">{{item.desc}}</h4>
+                            <div class="row product-detail">
+                                <a href="#" @click='addtocart(item)'>
+                                    <div class="col-xs-4">
+                                        <img src="picture/cart2.png" alt="" style="width:56px;">
+                                    </div>
+                                </a>
+                                <div class="col-xs-8 removepadding">
+                                    <h3 class="harga removepadding">{{item.price}}</h3>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="col-cs-4 col-md-3 removepadding">
-                  <div class="product-box">
-                      <img class="product-image" src="picture/product1.jpg" alt="">
-                      <div class="product-desc">
-                          <h2 class="product-name">Bolen</h2>
-                          <h4 class="product-vendor">Bandung</h4>
-                          <div class="row product-detail">
-                              <a href="#">
-                                  <div class="col-xs-4">
-                                      <img src="picture/cart2.png" alt="" style="width:56px;">
-                                  </div>
-                              </a>
-                              <div class="col-xs-8 removepadding">
-                                  <h3 class="harga removepadding">Rp.35000</h3>
-                              </div>
-                          </div>
-                      </div>
+                    </div>
 
                 </div>
-
             </div>
-</div>
+            <div class="row productbaner">
+                <div class="col-xs-4 col-md-3 removepadding">
+                    <p id="product">Your cart</p>
+                </div>
+            </div>
+
+            <div class="row product">
+
+                <div class="col-cs-4 col-md-3 removepadding" v-for='cart in carts'>
+                    <div class="product-box">
+                        <img class="product-image" v-bind:src=cart.picture_url alt="">
+                        <div class="product-desc">
+                            <h2 class="product-name">{{cart.name}}</h2>
+                            <h4 class="product-vendor">{{cart.desc}}</h4>
+                            <div class="row product-detail">
+                                <a href="#">
+                                    <div class="col-xs-4">
+                                        <img src="picture/cart2.png" alt="" style="width:56px;">
+                                    </div>
+                                </a>
+                                <div class="col-xs-8 removepadding">
+                                    <h3 class="harga removepadding">{{cart.price}}</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <h2 class="col-cs-4 col-md-3 ">{{total}}</h2>
+                <button type="button" class="col-cs-4 col-md-3 btn btn-primary btn-lg" @click='checkout'>check out</button>
+            </div>
+
+
 
             <div class="row footer footer-backgroud removepadding">
                 <div class="col-xs-6 col-md-3 removepadding">
@@ -172,7 +205,6 @@
         </div>
 
     </div>
-    <a href="insertitem.html">inssasasassasas</a>
 
 </body>
 
@@ -202,4 +234,5 @@
     }(document, 'script', 'facebook-jssdk'));
 </script>
 <script src="./js/vue.js"></script>
+
 </html>

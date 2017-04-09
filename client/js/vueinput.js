@@ -3,6 +3,7 @@ var input = new Vue({
   data:{
     item_id:'',
     picture_url:'',
+    price:'',
     name:'',
     desc:'',
     stock:0
@@ -14,6 +15,7 @@ var input = new Vue({
               item_id: input.item_id,
               picture_url:input.picture_url,
               desc:input.desc,
+              price:input.price,
               stock:input.stock
           })
           .then(function(response) {

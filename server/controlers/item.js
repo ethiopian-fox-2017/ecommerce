@@ -5,6 +5,7 @@ module.exports={
       "item_id":req.body.item_id,
       "picture_url":req.body.picture_url,
       "name":req.body.name,
+      "price":req.body.price,
       "desc": req.body.desc,
       "stock":req.body.stock
     },
@@ -32,7 +33,7 @@ module.exports={
 
   update:function(req,res){
     Item.findOne({
-      facebookid:req.params.id
+      _id:req.params.id
     },function(err,data){
       if (err) {
         res.send(err)
@@ -42,6 +43,7 @@ module.exports={
         data.name=req.body.name||data.name;
         data.desc=req.body.desc||data.desc;
         data.stock=req.body.stock||data.stock;
+        data.price=req.body.price||data.price;
         data.save(function (err, data) {
              if (err) {
                  res.status(500).send(err)
