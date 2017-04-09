@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>buah tangan</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/vue@2.2.6"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <div class="row" id="header">
+                <div class="col-xs-4 col-md-3 ">
+                    <img src="picture/logo.png" alt="" style="width:75px;width:75px">
+                </div>
+                <div class="col-xs-2 col-md-6">
+
+                </div>
+                <a href="#" @click='cek'>
+                    <div class="col-xs-2 col-md-1 headerborder">
+                        <img src="picture/cart.png" alt="" style="width:75px;width:75px"><br>
+                        <h3 class="buttondesc removepadding">cart</h3>
+                    </div>
+                </a>
+                <a @click="fblogin" href="#">
+                    <div class="col-xs-2 col-md-1 headerborder">
+                        <img src="picture/login.png" alt="" style="width:75px;width:75px"><br>
+                        <h3 class="buttondesc removepadding">login</h3>
+                    </div>
+                </a>
+                <a @click="fblogout" href="#">
+                    <div class="col-xs-2 col-md-1 headerborder">
+                        <img src="picture/login.png" alt="" style="width:75px;width:75px"><br>
+                        <h3 class="buttondesc removepadding">logout</h3>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="row jumbotron myjumbotron">
+
+                <div class="carousel slide thiscarr" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="picture/bakpia.jpg" alt="Chania" style="height:480px;">
+                        </div>
+
+                        <div class="item">
+                            <img src="picture/empek-empek.jpg" alt="Chania" style="height:480px;">
+                        </div>
+
+                        <div class="item">
+                            <img src="picture/meranti.jpg" alt="Flower" style="height:480px;">
+                        </div>
+
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container removepadding">
+            <div class="row productbaner">
+                <div class="col-xs-4 col-md-3 removepadding">
+                    <p id="product">Product</p>
+                </div>
+            </div>
+            <div class="row product">
+
+                <div class="col-cs-4 col-md-3 removepadding" v-for='item in items'>
+                    <div class="product-box" >
+                        <img class="product-image" v-bind:src=item.picture_url alt="">
+                        <div class="product-desc">
+                            <h2 class="product-name">{{item.name}}</h2>
+                            <h4 class="product-vendor">{{item.desc}}</h4>
+                            <div class="row product-detail">
+                                <a href="#" @click='addtocart(item)'>
+                                    <div class="col-xs-4">
+                                        <img src="picture/cart2.png" alt="" style="width:56px;">
+                                    </div>
+                                </a>
+                                <div class="col-xs-8 removepadding">
+                                    <h3 class="harga removepadding">{{item.price}}</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="row productbaner">
+                <div class="col-xs-4 col-md-3 removepadding">
+                    <p id="product">Your cart</p>
+                </div>
+            </div>
+
+            <div class="row product">
+
+                <div class="col-cs-4 col-md-3 removepadding" v-for='cart in carts'>
+                    <div class="product-box">
+                        <img class="product-image" v-bind:src=cart.picture_url alt="">
+                        <div class="product-desc">
+                            <h2 class="product-name">{{cart.name}}</h2>
+                            <h4 class="product-vendor">{{cart.desc}}</h4>
+                            <div class="row product-detail">
+                                <a href="#">
+                                    <div class="col-xs-4">
+                                        <img src="picture/cart2.png" alt="" style="width:56px;">
+                                    </div>
+                                </a>
+                                <div class="col-xs-8 removepadding">
+                                    <h3 class="harga removepadding">{{cart.price}}</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <h2 class="col-cs-4 col-md-3 ">{{total}}</h2>
+                <button type="button" class="col-cs-4 col-md-3 btn btn-primary btn-lg" @click='checkout'>check out</button>
+            </div>
+
+
+
+            <div class="row footer footer-backgroud removepadding">
+                <div class="col-xs-6 col-md-3 removepadding">
+                    <div class="footer">
+                        <div class="footer-tittle">
+                            <h3>Buah Tangan</h3>
+
+                        </div>
+                        <div class="footer-desc">
+                            <p>buah tangan adalah lalalalal</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-3 removepadding">
+                    <div class="footer">
+                        <div class="footer-tittle">
+                            <h3>Buah Tangan</h3>
+
+                        </div>
+                        <div class="footer-desc">
+                            <p>buah tangan adalah lalalalal</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-3 removepadding">
+                    <div class="footer">
+                        <div class="footer-tittle">
+                            <h3>Buah Tangan</h3>
+
+                        </div>
+                        <div class="footer-desc">
+                            <p>buah tangan adalah lalalalal</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-3 removepadding">
+                    <div class="footer">
+                        <div class="footer-tittle">
+                            <h3>Buah Tangan</h3>
+
+                        </div>
+                        <div class="footer-desc">
+                            <p>buah tangan adalah lalalalal</p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script type="text/javascript">
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '119956475212967',
+            xfbml: true,
+            version: 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                console.log(response);
+            }
+        });
+    };
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<script src="./js/vue.js"></script>
+
+</html>
