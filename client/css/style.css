@@ -1,0 +1,50 @@
+#logo, #header {
+  font-family: 'Lato', sans-serif;;
+}
+
+#header {
+  margin-left: 15px;
+  margin-top: -50px;
+}
+
+.nav-visible {
+  display: inline-block !important;
+}
+
+.brand-logo {
+  position: inherit;
+  display: inline-block;
+}
+
+nav form {
+  width: 300px;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+nav .brand-logo {
+  position: inherit;
+}
+
+.carousel {
+  height: 600px !important;
+}
+
+#row1 {
+  height: 200px
+  border: 1px solid grey;
+}
+
+.bordered {
+  border: 1px solid grey;
+  text-align: center;
+  height: 570px;
+}
+
+#left {
+  text-align: justify;
+}
+
+#pojok {
+  height: 95%;
+}

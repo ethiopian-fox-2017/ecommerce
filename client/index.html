@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>E-Commerce</title>
+      <script src="js/jquery-3.2.0.min.js"></script>
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" href="css/style.css" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script src="https://unpkg.com/vue@2.2.6"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+  <div id="app"> <!-- for VUE.JS purpose -->
+  <!-------------------------------------------------------------------------------------------------------------------------->
+  <!-- SIDEBAR -->
+
+    <ul id="slide-out" class="side-nav">
+      <li><div class="userView">
+        <div class="background">
+        <img id="pojok" src="img/shop.jpg">
+      </div>
+        <img class="circle" src="https://avatars3.githubusercontent.com/u/25143119?v=3&s=460">
+        <span class="black-text name">Username</span>
+        <span class="black-text email">User's email</span>
+      </div></li>
+      <li><a class="waves-effect" href="#!">Notebook</a></li>
+      <li><a class="waves-effect" href="#!">Gadget</a></li>
+      <li><a class="waves-effect" href="#!">Photography</a></li>
+      <li><a class="waves-effect" href="#!">Networking</a></li>
+      <li><a class="waves-effect" href="#!">Software</a></li>
+      <li><a class="waves-effect" href="#!">Peripheral</a></li>
+      <br><br>
+      <li><a class="waves-effect" href="#!">Account</a></li>
+      <li><a class="waves-effect" href="#!">Logout</a></li>
+    </ul>
+
+  <!-------------------------------------------------------------------------------------------------------------------------->
+  <!-- NAVBAR -->
+
+    <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper deep-orange lighten-1">
+            <a href="#" data-activates="slide-out" class="button-collapse nav-visible" ><i class="material-icons">menu</i></a>
+            <a href="#!" class="brand-logo left" id="logo">teknopedia</a>
+            <form class="left hide-on-med-and-down">
+              <div class="input-field">
+                <input id="search" type="search" placeholder="click here to search..." required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+            <ul class="right hide-on-med-and-down">
+              <li><a v-if="statusLogin == false" class="waves-effect waves-light" onclick="login()">Login</a></li>
+              <li><a v-if="statusLogin == true" class="waves-effect waves-light" onclick="clearLocalStorage()">Logout</a></li>
+              <li><a class="modal-trigger waves-effect waves-light" href="#modal3">My Cart<i class="material-icons right">shopping_cart</i></a></li>
+            </ul>
+          </div>
+        </nav>
+    </div>
+  <!-------------------------------------------------------------------------------------------------------------------------->
+  <!-- CAROUSEL -->
+
+    <div class="carousel carousel-slider">
+      <a class="carousel-item" href="#one!"><img src="img/a.jpg"></a>
+      <a class="carousel-item" href="#two!"><img src="img/b.jpg"></a>
+      <a class="carousel-item" href="#three!"><img src="img/c.jpg"></a>
+      <a class="carousel-item" href="#four!"><img src="img/d.jpg"></a>
+      <a class="carousel-item" href="#five!"><img src="img/e.jpg"></a>
+    </div>
+
+  <!-------------------------------------------------------------------------------------------------------------------------->
+  <!-- LOGIN MODAL STRUCTURE -->
+
+    <!-- Modal Structure -->
+    <!-- <div id="modal1" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Login</h4>
+        <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="password" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+          <p>Haven't registered yet? Please <a class="modal-trigger waves-effect waves-light" href="#modal2" onclick="close()">Signup</a> first.</p>
+        </form>
+      </div>
+
+      <button class="btn waves-effect waves-light z-depth-4 right" type="submit" name="action">Login<i class="material-icons right">send</i></button>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+      </div>
+    </div> -->
+
+
+  <!-------------------------------------------------------------------------------------------------------------------------->
+  <!-- SIGNUP MODAL STRUCTURE -->
+
+  <!-- Modal Structure -->
+  <!-- <div id="modal2" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Signup</h4>
+      <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="email" type="email" class="validate">
+            <label for="email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="password" type="password" class="validate">
+            <label for="password">Password</label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <button class="btn waves-effect waves-light z-depth-4 right" type="submit" name="action">Signup<i class="material-icons right">send</i></button>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Close</a>
+    </div>
+  </div> -->
+
+  <!-------------------------------------------------------------------------------------------------------------------------->
+  <!-- MY CART MODAL STRUCTURE -->
+
+    <!-- Modal Structure -->
+    <div id="modal3" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Your Shopping Cart</h4>
+        <p>List of goods:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Item Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in cart">
+              <td>{{ item.description }}</td>
+              <td>{{ item.price }}</td>
+              <td><input type="number" min=0 v-model="item.quantity"></td>
+            </tr>
+          </tbody>
+        </table>
+      <button class="btn waves-effect waves-light z-depth-4 right" type="submit" name="action">Checkout<i class="material-icons right">send</i></button>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Continue Shopping</a>
+      </div>
+    </div>
+
+  <!-------------------------------------------------------------------------------------------------------------------------->
+  <!-- LIST OF ITEMS -->
+
+     <h2 id="header">Hot Items</h2>
+
+     <div class="row">
+       <div class="col s12 m6 l3 bordered" v-for="item in items">
+          <img :src="item.img_url">
+          <p id="left">{{ item.description }}</p>
+          <h4 id="left"><b>Rp {{ item.price }}</b></h4>
+          <hr>
+          <p id="left">Stok : {{ item.stock }}</p>
+          <button v-if="statusLogin == true" class="btn waves-effect waves-light z-depth-4" type="submit" name="action" @click="addToCart(item)" onclick="Materialize.toast('Added to Cart!', 2000)">add to cart<i class="material-icons right">send</i></button>
+
+          <button v-if="statusLogin == false" class="btn waves-effect waves-light z-depth-4" type="submit" name="action" onclick="login()">add to cart<i class="material-icons right">send</i></button>
+
+       </div>
+     </div>
+
+  <!-------------------------------------------------------------------------------------------------------------------------->
+  <!-- FOOTER -->
+
+     <footer class="page-footer deep-orange lighten-1">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Footer Content</h5>
+              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Links</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+            © 2017 Copyright Laksono Suryadi
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          </div>
+        </div>
+      </footer>
+    </div> <!-- END OF DIV ID #APP, for VUE.js purpose -->
+  </body>
+
+  <!-------------------------------------------------------------------------------------------------------------------------->
+  <!-- JAVASCRIPT -->
+
+  <script>
+    $(document).ready(function(){
+      $('.modal').modal(); //to trigger modal (pop up) My Cart
+      $(".button-collapse").sideNav(); //to trigger side nav bar
+      $('.carousel.carousel-slider').carousel({fullWidth: true}); //to trigger carousel
+      autoplay()
+    })
+    function autoplay() { //setting the carousel to autoplay when document is ready
+      $('.carousel').carousel('next');
+      setTimeout(autoplay, 4500)
+    }
+    function close() {
+      $('#modal1').modal('close');
+    }
+
+    ///////////////////////////////////////////// V U E /////////////////////////////////////////////
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        items: [],
+        cart: [],
+        statusLogin: false
+      },
+      methods: {
+        getproduct: function () {
+          let self = this;
+          axios.get('http://localhost:3000/item')
+          .then(function (response) {
+            console.log(response);
+            response.data.map(function(item) {
+              item.quantity = 1;
+              item.checked = false;
+              self.items.push(item)
+            })
+          })
+          .catch(function(error) {
+            console.log(error);
+          })
+        },
+        addToCart(item){
+          var idx = this.cart.indexOf(item)
+          console.log(idx);
+          if(idx == -1) {
+            this.cart.push(item)
+          } else {
+            this.cart[idx].quantity = parseInt(this.cart[idx].quantity)
+
+            this.cart[idx].quantity += 1
+          }
+        },
+        checkToken: function() {
+          if(localStorage.getItem('token')){
+            this.statusLogin = true
+          } else {
+            this.statusLogin = false
+          }
+        }
+      },
+      mounted: function() { //mounted = function that will be executed when the page is already loaded
+        this.getproduct() //getting all items from database (pictures and data)
+        this.checkToken() //checking whether the user has Login or not. If not Logged in, user can not use Add To Cart button.
+      }
+    })
+
+    ///////////////////////////////////////////// FACEBOOK LOGIN /////////////////////////////////////////////
+
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '294784947618648',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v2.8'
+      });
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+
+     function login() {
+       FB.login(function(){}, {scope: 'public_profile'})
+     }
+
+     function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+     }
+
+      // This is called with the results from from FB.getLoginStatus().
+      function statusChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        // The response object is returned with a status field that lets the
+        // app know the current login status of the person.
+        // Full docs on the response object can be found in the documentation
+        // for FB.getLoginStatus().
+        if (response.status === 'connected') {
+          // Logged into your app and Facebook.
+          testAPI();
+        } else {
+          console.log("please login");
+          // The person is not logged into your app or we are unable to tell.
+          // document.getElementById('status').innerHTML = 'Please log ' +
+          //   'into this app.';
+        }
+      }
+
+      // Here we run a very simple test of the Graph API after login is
+      // successful.  See statusChangeCallback() for when this call is made.
+      function testAPI() {
+        console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me', function(response) {
+          console.log(response);
+          console.log('Successful login for: ' + response.name);
+          axios.post('http://localhost:3000/customer', response)
+                .then(function(res) {
+                  console.log(res);
+                  localStorage.setItem("token", res.data)
+                })
+                .catch(function(err) {
+                  console.log(err);
+                })
+          // document.getElementById('status').innerHTML =
+          //   'Thanks for logging in, ' + response.name + '!';
+        });
+      }
+
+      function clearLocalStorage() { //Clearing the token from Local Storage when user hit the Logout button
+        FB.logout(function(response) {
+          console.log(response);
+          localStorage.removeItem("token");
+          window.location.reload();
+        })
+      }
+  </script>
+
+</html>

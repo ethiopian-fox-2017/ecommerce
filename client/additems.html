@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@2.2.6"></script>
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <title>Add Items</title>
+  </head>
+
+  <body>
+  <br><br>
+    <div id="app">
+      <div class="row" style="width: 50%">
+        <div class="input-field col s12">
+          <input type="text" v-model="items.name" name="name" class="validate">
+          <label for="Name">Name</label><br>
+        </div>
+        <div class="input-field col s12">
+          <input type="text" v-model="items.description" name="description" class="validate">
+          <label for="Description">Description</label>
+        </div>
+        <div class="input-field col s12">
+          <input type="text" v-model="items.price" name="price" class="validate">
+          <label for="Price">Price</label>
+        </div>
+        <div class="input-field col s12">
+          <input type="text" v-model="items.img_url" name="img_url" class="validate">
+          <label for="IMG_URL">IMG_URL</label>
+        </div>
+        <div class="input-field col s12">
+          <input type="text" v-model="items.stock" name="stock" class="validate">
+          <label for="stock">Stock</label>
+        </div>
+        <button type="submit" v-on:click="addProduct">SUBMIT</button>
+      </div>
+      <p>{{ message }}</p>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+    var app = new Vue({
+      el: '#app',
+      data: {
+        items: {
+          name : '',
+          description : '',
+          price : 0,
+          img_url : '',
+          stock : 0
+        }
+      },
+      methods: {
+        addProduct: function () {
+          let self = this;
+          axios.post('http://localhost:3000/item', self.items)
+          .then(function (response) {
+            console.log(response);
+            message: 'sukses';
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        }
+      }
+    })
+  })
+  </script>
+
+</html>
