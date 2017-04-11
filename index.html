@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">    
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue@2.2.6"></script>
+  <link href="style.css" rel="stylesheet" type="text/css">
+
+	<title>E-Commerce</title>
+</head>
+
+<body>
+
+  <div class="container-header fixed-top">
+    <header class="navbar navbar-toggleable-md navbar-light">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <h1 class="navbar-brand mb-0">HacktivPedia</h1>
+
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+
+      <div class="space">
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/shoppcart.html">Shopping Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/shoppcart.html">Checkout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sign In</a>
+          </li>
+        </ul>
+      </div>
+
+    </header>
+  </div>
+
+  <div class="container-category">Kategori
+    <div class="list-gadget">
+      <a href="#container-asus" class="list-group-item list-group-item-action">
+        <img src="./img-category/gadget/asus-logo.jpg" class="rounded mx-auto d-block list-image">Asus</a>
+      <a href="#container-microsoft" class="list-group-item list-group-item-action">
+        <img src="./img-category/gadget/microsoft-logo.jpg" class="rounded mx-auto d-block list-image">Microsoft</a>
+      <a href="#container-lenovo" class="list-group-item list-group-item-action">
+        <img src="./img-category/gadget/lenovo-logo.jpg" class="rounded mx-auto d-block list-image">Lenovo</a>
+      <a href="#container-iPhone" class="list-group-item list-group-item-action">
+        <img src="./img-category/gadget/iPhone-logo.jpg" class="rounded mx-auto d-block list-image">iPhone</a>
+    </div>
+    <!-- <div class="space2"></div> -->
+    <div class="list-fashion">
+      <a href="#container-kid" class="list-group-item list-group-item-action">
+        <img src="./img-category/fashion/kid-fashion.jpg" class="rounded mx-auto d-block list-image">Fashion Anak</a>
+      <a href="#container-muslim" class="list-group-item list-group-item-action">
+        <img src="./img-category/fashion/muslim-fashion.jpg" class="rounded mx-auto d-block list-image">Fashion Muslim</a>
+      <a href="#container-male" class="list-group-item list-group-item-action">
+        <img src="./img-category/fashion/male-fashion.jpg" class="rounded mx-auto d-block list-image">Fashion Pria</a>
+      <a href="#container-female" class="list-group-item list-group-item-action">
+        <img src="./img-category/fashion/female-fashion.jpg" class="rounded mx-auto d-block list-image">Fashion Wanita</a>
+    </div>
+  </div>
+
+  <div id="container-asus" class="container-asus">Asus Phone
+    <div class="go-zc451tg item">
+      <img src="./img-category/gadget/img-list-asus/go-zc451tg.jpg" class="rounded mx-auto d-block list-image-asus">Zenfone go-zc451tg</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="zenfone4 item">
+      <img src="./img-category/gadget/img-list-asus/zenfone-4.jpg" class="rounded mx-auto d-block list-image-asus">Zenfone 4</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    
+    <div class="zenfone4s item">
+      <img src="./img-category/gadget/img-list-asus/zenfone-4s.jpg" class="rounded mx-auto d-block list-image-asus">Zenfone 4s</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="zenfone5 item">
+      <img src="./img-category/gadget/img-list-asus/zenfone-5.jpg" class="rounded mx-auto d-block list-image-asus">Zenfone 5</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="zenfone6 item">
+      <img src="./img-category/gadget/img-list-asus/zenfone-6.jpg" class="rounded mx-auto d-block list-image-asus">Zenfone 6</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+  </div>
+
+  <div id="container-microsoft" class="container-microsoft">MICROSOFT PHONE
+    <div class="microsoft-lumia-532 item">
+      <img src="./img-category/gadget/img-list-microsoft/microsoft-lumia-532.jpg" class="rounded mx-auto d-block list-image-other">Microsoft Lumia 532</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="microsoft-lumia-950 item">
+      <img src="./img-category/gadget/img-list-microsoft/microsoft-lumia-950.jpg" class="rounded mx-auto d-block list-image-other">Microsoft Lumia 950</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+  </div>
+
+  <div id="container-lenovo" class="container-lenovo">LENOVO PHONE
+    <div class="lenovo-6000-plus item">
+      <img src="./img-category/gadget/img-list-lenovo/lenovo-6000-plus.jpg" class="rounded mx-auto d-block list-image-other">Lenovo 6000 Plus</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="lenovo-a2010 item">
+      <img src="./img-category/gadget/img-list-lenovo/lenovo-a2010.jpg" class="rounded mx-auto d-block list-image-other">Lenovo A2010</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+  </div>
+
+  <div id="container-iPhone" class="container-iPhone">IPHONE PHONE
+    <div class="iPhone-5-plus item">
+      <img src="./img-category/gadget/img-list-iPhone/iphone-5-plus.jpg" class="rounded mx-auto d-block list-image-other">IPhone 5 Plus</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="iPhone-5 item">
+      <img src="./img-category/gadget/img-list-iPhone/iphone-5.jpg" class="rounded mx-auto d-block list-image-other">IPhone 5</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="iPhone-6-plus item">
+      <img src="./img-category/gadget/img-list-iPhone/iphone-6-plus.jpg" class="rounded mx-auto d-block list-image-other">IPhone 6 Plus</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="iPhone-6 item">
+      <img src="./img-category/gadget/img-list-iPhone/iphone-6.jpg" class="rounded mx-auto d-block list-image-other">IPhone 6</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+  </div>
+
+  <div id="container-female" class="container-female">FEMALE FASHION
+    <div class="baju-senam item">
+      <img src="./img-category/fashion/female-fashion/baju-senam.jpg" class="rounded mx-auto d-block list-image-other">Baju Senam</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="karma-shirt item">
+      <img src="./img-category/fashion/female-fashion/karma-shirt.jpg" class="rounded mx-auto d-block list-image-other">Karma Shirt</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="rosmetta-top item">
+      <img src="./img-category/fashion/female-fashion/rosmetta-top.jpg" class="rounded mx-auto d-block list-image-other">Rosmetta Top</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="twisted-velvet item">
+      <img src="./img-category/fashion/female-fashion/twisted-velvet.jpg" class="rounded mx-auto d-block list-image-other">Twisted Velvet</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+  </div>
+
+  <div id="container-kid" class="container-kid">KID FASHION
+    <div class="batman-pijama item">
+      <img src="./img-category/fashion/kid-fashion/batman-pijama.jpg" class="rounded mx-auto d-block list-image-other">Piyama Batman</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="kaos-jeep item">
+      <img src="./img-category/fashion/kid-fashion/kaos-jeep.jpg" class="rounded mx-auto d-block list-image-other">Kaos Jeep</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="kaos-superhero item">
+      <img src="./img-category/fashion/kid-fashion/kaos-superhero.jpg" class="rounded mx-auto d-block list-image-other">Kaos Superhero</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+  </div>
+
+  <div id="container-male" class="container-male">MALE FASHION
+    <div class="jaket-baseball item">
+      <img src="./img-category/fashion/male-fashion/jaket-baseball.jpg" class="rounded mx-auto d-block list-image-other">Jaket Baseball</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="kemeja-pria item">
+      <img src="./img-category/fashion/male-fashion/kemeja-pria.jpg" class="rounded mx-auto d-block list-image-other">Kemeja Pria</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="sepatu-fantovel item">
+      <img src="./img-category/fashion/male-fashion/sepatu-fantovel.jpg" class="rounded mx-auto d-block list-image-other">Sepatu Fantovel</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="swiss-army item">
+      <img src="./img-category/fashion/male-fashion/swiss-army.jpg" class="rounded mx-auto d-block list-image-other">Jam Swiss Army</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+  </div>
+
+  <div id="container-muslim" class="container-muslim">MUSLIM FASHION
+    <div class="gamis-pria item">
+      <img src="./img-category/fashion/muslim-fashion/gamis-pria.jpg" class="rounded mx-auto d-block list-image-other">Gamis Pria</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="khimar-dua-layer item">
+      <img src="./img-category/fashion/muslim-fashion/khimar-dua-layer.jpg" class="rounded mx-auto d-block list-image-other">Khimar Dua Layer</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+    <div class="sarung-pria item">
+      <img src="./img-category/fashion/muslim-fashion/sarung-pria.jpg" class="rounded mx-auto d-block list-image-other">Sarung Pria</a>
+      <button type="button" class="btn btn-primary">Add to cart</button>
+    </div>
+  </div>
+
+  <div id="app">
+    {{message}}
+  </div>
+
+  <footer class="footer">
+    <div class="container2 fixed-bottom">
+      <p>@hacktivPedia</p>
+    </div>
+  </footer>
+
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!'
+      },
+      methods:{
+        getData: function(){
+          axios.get('http://localhost:3000/books')
+          .then(function (res) {
+            console.log(res);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        }
+      }
+      // mounted: function() {
+      //   this.getData();
+      // }
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+header {
+	width: 100%;
+}
+
+.container-header {
+  display: flex;
+  background-color: AliceBlue;
+  height: 50px;
+  /*width: 100%;*/
+  flex-grow: 1;
+}
+
+.container-category {
+	margin: 20px;
+	margin-top: 50px;
+	display: flex;
+	justify-content: flex-start;
+	/*width: 100%;	*/
+  flex-grow: 1;
+}
+
+.container-asus {
+	margin: 20px;
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	height: 300px;
+	/*width: 100%;*/
+  flex-grow: 1;
+	text-align: center;
+}
+
+.container-microsoft {
+	margin: 20px;
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	height: 300px;
+	/*width: 100%;*/
+  flex-grow: 1;
+	text-align: center;
+}
+
+.container-lenovo {
+	margin: 20px;
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	height: 300px;
+	/*width: 100%;*/
+  flex-grow: 1;
+	text-align: center;
+}
+
+.container-iPhone {
+	margin: 20px;
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	height: 300px;
+	/*width: 100%;*/
+  flex-grow: 1;
+	text-align: center;
+}
+
+.container-female {
+	margin: 20px;
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	height: 300px;
+	/*width: 100%;*/
+  flex-grow: 1;
+	text-align: center;
+}
+
+.container-male {
+	margin: 20px;
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	height: 300px;
+	/*width: 100%;*/
+  flex-grow: 1;
+	text-align: center;
+}
+
+.container-kid {
+	margin: 20px;
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	height: 300px;
+	/*width: 100%;*/
+  flex-grow: 1;
+	text-align: center;
+}
+
+.container-muslim {
+	margin: 20px;
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	height: 300px;
+	/*width: 100%;*/
+  flex-grow: 1;
+	text-align: center;
+}
+
+.container-content {
+	text-align: center;
+}
+
+.col-6 { 
+	margin-top: 50px;
+	padding-top: 35px;
+	border: 1px solid grey;
+	height: 100px;
+	text-align: center;
+}
+
+.item {
+	display: flex;
+	flex-direction: column;
+}
+
+.list-gadget {
+	width: 400px;
+}
+
+.list-fashion {
+	width: 400px;
+}
+
+.list-laptop {
+	width: 400px;
+}
+
+.list-group-item {
+	margin: 20px;
+	width: 300px;
+}
+
+.list-image {
+	height: 50px;
+}
+
+.list-image-asus {
+	height: 220px;
+	width: 100%;
+}
+
+.list-image-other {
+	height: 250px;
+}
+
+.form-inline {
+	width: 1700px;
+}
+
+.space {
+	display: flex;
+	width: 2000px;
+}
+
+.navbar-nav {
+	/*display: flex;*/
+	justify-content: flex-end;
+}
+
+.navbar-content {
+  align-items: center;
+}
+
+.container2 {
+	padding: 0;
+	margin: 0;
+	display: flex;
+  background-color: AliceBlue;
+  justify-content: flex-start;
+  height: 30px;
+  width: 100%;
+}
