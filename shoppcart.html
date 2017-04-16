@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">    
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
@@ -46,35 +46,29 @@
       <thead>
         <tr>
           <th>No</th>
-          <th>ISBN</th>
-          <th>Title</th>
-          <th>Author</th>
+          <th>Name Product</th>
           <th>Category</th>
-          <th>Stock</th>
+          <th>Checkout</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th scope="row">1</th>
-          <td>{{items[0].isbn}}</td>
-          <td>{{items[0].title}}</td>
-          <td>{{items[0].author}}</td>
+          <td>{{items[0].name_product}}</td>
           <td>{{items[0].category}}</td>
-          <td>{{items[0].stock}}</td>
+          <td><button type="button" class="btn btn-outline-success">Checkout</button></td>
         </tr>
         <tr>
           <th scope="row">2</th>
-          <td>{{items[1].isbn}}</td>
-          <td>{{items[1].title}}</td>
-          <td>{{items[1].author}}</td>
+          <td>{{items[1].name_product}}</td>
           <td>{{items[1].category}}</td>
-          <td>{{items[1].stock}}</td>
+          <td><button type="button" class="btn btn-outline-success">Checkout</button></td>
         </tr>
       </tbody>
     </table>
     <!-- {{items[0].title}} -->
   </div>
-  
+
   <script type="text/javascript">
     var app = new Vue({
       el: '#app',
@@ -84,9 +78,9 @@
       methods:{
         getData: function(){
           var self = this;
-          axios.get('http://localhost:3000/books')
+          axios.get('http://localhost:3000/carts')
           .then(function (res) {
-            console.log(res);
+            console.log(res.data[0].name_product);
             res.data.forEach((x) => {
               self.items.push(x);
             })
@@ -97,7 +91,7 @@
         }
       },
       mounted: function() {
-        this.getData();
+        // this.getData();
       }
     })
   </script>

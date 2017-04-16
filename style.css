@@ -116,7 +116,14 @@ header {
 	text-align: center;
 }
 
-.col-6 { 
+.btn-primary {
+  width: 40%;
+  text-align: center;
+  padding: 0;
+  margin: auto;
+}
+
+.col-6 {
 	margin-top: 50px;
 	padding-top: 35px;
 	border: 1px solid grey;
